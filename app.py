@@ -29,10 +29,6 @@ jwt = JWT(app, authenticate, identity) #Creates a new endpoint called /auth
 #item_arg.add_argument("name", type=str, help="You must input item name", required=True)
 #item_arg.add_argument("price", type=str, help="You must input item price", required=True)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 
 
 
