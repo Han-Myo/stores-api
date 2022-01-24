@@ -9,7 +9,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Items, ItemsList
 from resources.store import Store, StoreList
-from db import db
+
 
 
 
@@ -18,7 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "hanmyo"
 api = Api(app)
-db.init_app(app)
+
 
 
 jwt = JWT(app, authenticate, identity) #Creates a new endpoint called /auth
@@ -40,4 +40,6 @@ api.add_resource(StoreList, '/stores')
 
 
 if __name__ == "__main__":
+    from db import db
+    db.init_app(app)
     app.run(port=5500, debug=True)
