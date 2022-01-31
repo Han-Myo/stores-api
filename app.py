@@ -18,10 +18,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wsvalzbd:3kzN1Irb0Z7HJY4T0
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "hanmyo"
 api = Api(app)
+db.init_app(app)
 
 jwt = JWT(app, authenticate, identity) #Creates a new endpoint called /auth
 
 
+@app.before_first_request
+def create_table():
+    db.create_all()
 
 #item_arg = reqparse.RequestParser()
 #item_arg.add_argument("name", type=str, help="You must input item name", required=True)
