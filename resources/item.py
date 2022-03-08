@@ -10,14 +10,14 @@ class Items(Resource):
     
 
     @jwt_required()
-    def get(self, name):
+    def get(self, name): #Get_one_item
         item = ItemModel.find_name(name)
         if item:
             return item.json()
         return {"message": "Item not found"}, 404  
         
 
-    def post(self, name):
+    def post(self, name): #creates_an_item
         if ItemModel.find_name(name):
             return {"message": "An item with name {} already exists.".format(name)}, 400
         
@@ -31,15 +31,13 @@ class Items(Resource):
             
         return item.json(), 201 #Created
     
-   
-    
-    def delete(self, name):
+    def delete(self, name): #deletes_an_item
         item = ItemModel.find_name(name)
         if item:
             item.delete()
         return {"message": "Item deleted from list"}
     
-    def put(self, name):
+    def put(self, name): #creates/updates_an_item
         data = Items.parser.parse_args()
 
         item = ItemModel.find_name(name)
@@ -56,5 +54,5 @@ class Items(Resource):
 
 
 class ItemsList(Resource):
-    def get(self):
+    def get(self): #gets_list_of_all_items
         return {"items": [item.json() for item in ItemModel.query.all()]}

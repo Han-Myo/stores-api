@@ -14,9 +14,9 @@ from db import db
     
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wsvalzbd:3kzN1Irb0Z7HJY4T0k9oEX3JUGpOyZWK@abul.db.elephantsql.com/wsvalzbd'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wsvalzbd:3kzN1Irb0Z7HJY4T0k9oEX3JUGpOyZWK@abul.db.elephantsql.com/wsvalzbd'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.secret_key = "hanmyo"
 api = Api(app)
 db.init_app(app)
