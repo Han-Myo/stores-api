@@ -1,5 +1,5 @@
 from models.user import UserModel
-from werkzeug.security import safe_str_cmp
+from werkzeug import safe_str_cmp
 #from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 users = [
