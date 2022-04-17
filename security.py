@@ -1,5 +1,5 @@
 from models.user import UserModel
-from werkzeug import safe_str_cmp
+#from werkzeug import safe_str_cmp
 #from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 users = [
@@ -15,7 +15,7 @@ userid_table = {u.id: u for u in users}
 
 def authenticate(username, password):
     user = UserModel.find_by_username(username) #username_table.get(username, None)(for in-memory database)
-    if user and safe_str_cmp(user.password, password): 
+    if user and user.password == password: 
         return user
         
 
